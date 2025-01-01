@@ -1,0 +1,130 @@
+8.	RUN image HELLO-WORLD IMAGE 
+docker run hello-world
+ 
+
+9.	CHECK IMAGES
+ docker images
+ 
+10.	Pull Ubuntu Image from Docker Hub  
+docker pull ubuntu
+ 
+11.	Run the image as docker container 
+docker run -it -d ubuntu
+	 
+12.	Check the  all running and stopped containers  
+ docker ps –a
+ 
+13.	During the execution of the container Ubuntu -> 
+copy the container ID
+ 
+14.	To accessing/executing a running container (ubuntu) 
+docker exec -it 1c6072756052 bash
+15.	Give echo message in the running container 
+root@1c6072756052:/# echo Welcome to docker demo  
+Welcome to docker demo
+16.	Exit from the running container  
+ root@1c6072756052:/# exit 
+exit
+ 
+
+PS C:\Users>
+17.	To stop the running container 
+ docker stop containerID 
+ PS C:\Users > docker stop 1c6072756052 
+1c6072756052 
+ 
+PS C:\Users >
+18.	run ubuntu with echo 
+docker run –it ubantu bash root@1c6072756052:/# echo Bhargavi 
+Bhargavi 
+root@1c6072756052:/#
+ 
+19.	  Pull the ubuntu image from the docker repository and run it as a container that will provide all the features of ubuntu
+$ docker search ubuntu    displays public images in ubuntu
+ 
+20.	Pushing the image from local repository to docker hub
+●	Step1:create dockerhub account 
+●	Step2:login using dochub 
+●	PS C:\Users > docker login 
+●	Username:<< >> ( here give user name) 
+●	Password:<< >> ( here give user password) 
+Login Succeeded
+ 
+21.	Restart image
+ $docker start containerID used to restart the container if it has stopped due to application    crash or if error occurred
+ 
+
+
+Creating Docker Image using Docker File
+1.	Create two files, one file Dockerfile without extension and the other app.js (.js file contains Javascript code for execution on webpages)
+a)Creating a sample javascript file
+Type the following commands
+$ Vi app.js
+ Console.log(“Docker Image using Docker File”)
+Press Esc-> :wq-> to save and exit
+ 
+   b)Creating Docker Image using Docker File
+1.	Type the following commands
+2.	Node app.js will execute app.js file in node
+$ Vi dockerfile
+   #getting base image alpine
+FROM node :alpine
+WORKDIR / bhargavikumbham
+COPY  . /bhargavikumbham
+CMD node app.js
+ 
+3.	Press Esc-> :wq-> to save and exit
+ 
+$ docker  build –t myimage 
+ 
+
+$ docker images 
+  myimage will display here
+4.	Go to docker desktop-> local-> check myimage will exist-> click on run
+5.	Diplays the console output as “Docker Image using Docker File”
+
+ 
+
+
+6.	$ docker  tag myimage bhargavikumbham/myimage
+ 
+
+
+
+
+
+
+
+
+7.	$ docker  push bhargavikumbham/myimage
+ 
+8.	Go to desktop docker and check under the specified directory myimage will display
+ 
+9.	$ docker  logout
+ 
+
+
+
+How to push images from local rep to docker hub rep:
+1.	Step1:create dockerhub account 
+2.	Step2:login using dochub 
+3.	PS C:\Users > docker login 
+4.	Username:<< >> ( here give user name) 
+5.	Password:<< >> ( here give user password) 
+6.	Login Succeeded 
+ 
+7.	13) To restart image 
+8.	$docker start containerID used to restart the container if it has stopped due to application crash or if error occurred 
+ 
+9.	14) Working with container in interactive mode 
+10.	docker container exec -it containerID 15) Troubleshooting containers using logs $docker logs 505174ea315 Helps to see what’s going on in container 
+
+11.	16) Creating same image with different version in one application  
+
+
+12.	docker run redis:latest 
+ 
+13.	docker run redis:5.0 
+
+ 
+14.	Here two redis image
