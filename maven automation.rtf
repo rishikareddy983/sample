@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 TimesNewRomanPSMT;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+
+\f0\b\fs32 \cf2 \ul \ulc2 Steps for Maven Java Automation:
+\fs28 \
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+
+\f1\b0\fs24 \cf2 \ulnone Step 1: Open Jenkins in local host: 8080/ and click on a new item present in the left side. \
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+\cf2 Step 2: Select a new Freestyle Project give name (eg. MavenJava_Build) and then click ok.\
+Step 3: In description type e.g., Java Build demo, Scroll down and in Source code management give the Git MavenJava repository URL of the project to be built.\
+Step 4: Scroll down in Branches to build, Specify the Branch as */Main as it is in the GitHub.\
+Step 5: Goto Build Steps -> Add Build Step-> Invoke top-level Maven targets, Type MAVEN_HOME in Maven version, Goals: Clean. \
+Step 6: Again, click Add Build Step-> Invoke top-level Maven targets-> Type MAVEN_HOME in Maven version, Goals: install. \
+Step 7: Click add post build actions-> select Archive the artifacts, Type **/* in Files to Archive.\
+Step 8: Now click Add Post Build Action-> Build other projects
+\f0\b . 
+\f1\b0  In Projects to build, write MavenJava_Test and select Trigger only if build is stable.\
+Step 9: Click on Apply and save.\
+Step 10: Go to dashboard -> New item-> Freestyle Project, give project name as 
+\f0\b MavenJava_Test
+\f1\b0 , then press on OK.\
+Step 11: In description type Test demo and in Build environment, check the box with name \'93Delete the workspace before build starts\'94.\
+Step 12: Click on Add Build Step-> copy the artifacts from another project.\
+Step 13: Now Give project name: MavenJava_Build, Which build: Check the boxstable build only, Artifacts to copy: **/*.\
+Step 14: Click Add Build Step-> Invoke top-level Maven targets-> Type MAVEN_HOME in Maven version, Goals: test.\
+Step 15: Click on Post build actions->Archive the artifacts, in Files to archive type **/*.\
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+\cf2 Step 16: Now click apply and save.  Now run the project.\
+\pard\pardeftab720\sl259\slmult1\sa160\partightenfactor0
+
+\f0\b\fs32 \cf2 \ul \ulc2 Steps for Maven Web Automation:\
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+
+\f1\b0\fs24 \cf2 \ulnone Step 1: Open Jenkins in local host: 8080/ and click on a new item present in the left side. \
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+\cf2 Step 2: Select a new Freestyle Project give name 
+\f0\b MavenWeb_Build
+\f1\b0  and then click ok.\
+Step 3: In description type e.g., Web Build demo, Scroll sown and in Source code management give the Git MavenWeb repository URL of the project to be built.\
+Step 4: Scroll down in Branches to build, Specify the Branch as */Main as it is in the GitHub \
+Step 5: Goto Build Steps -> Add Build Step-> Invoke top-level Maven targets, Type MAVEN_HOME in Maven version, Goals: Clean. \
+Step 6: Again, click Add Build Step-> Invoke top-level Maven targets-> Type MAVEN_HOME in Maven version, Goals: install.\
+Step 7: Click add post build actions-> select Archive the artifacts, Type **/* in Files to Archive.\
+Step 8: Now click Add Post Build Action-> Build other projects
+\f0\b . 
+\f1\b0  In Projects to build, write MavenWeb_Test and select Trigger only if build is stable. Click on apply and save at the bottom.\
+Step 9: Go to dashboard -> New item-> Freestyle Project, give project name as 
+\f0\b MavenWeb_Test
+\f1\b0 , then press on OK.\
+Step 10: In description type Test demo and in Build environment, check the box with name \'93Delete the workspace before build starts\'94.\
+Step 11: Click on Add Build Step-> copy the artifacts from another project.\
+Step 12: Give project name: MavenWeb_Build, Which build: Check the box stable build only, Artifacts to copy: **/*.\
+Step 13: Click Add Build Step-> Invoke top-level Maven targets-> Type MAVEN_HOME in Maven version, Goals: test.\
+Step 14: Click on Post build actions->Archive the artifacts, in Files to archive type **/*.\
+Step 15: Add post build action->Build Other Projects->MavenWeb_Deploy, Apply and Save.\
+Step 16: Go to dashboard -> New item-> Freestyle Project, give project name as 
+\f0\b MavenWeb_Deploy
+\f1\b0 , then press on OK.\
+Step 17: In description give Web Code Deploement, scroll down to Build environment, Check \'93Delete the workspace before build starts\'94.\
+Step18: Goto Build Steps->Add Build Step-> copy the artifacts from another project.\
+Step 19: Give project name: MavenWeb_Test, Which build: Check the box stable build only, Artifacts to copy: **/*.\
+Step 20: Scroll down to post build actions-> Add post build action->Deploy war/ear to a container.\
+Step 21: Write WAR/EAR File: **/*.war, Context path: Webpath, click on Add container-> Tomact 9.x remote, Click on admin, add credentials as username: admin and password: 1234, save.\
+Step 22: Give Tomcat URL: https://localhost:8085/ , Click on apply and save.\
+Step 23: Now click on \'93+\'94 button present beside \'93All\'94 in the dashboard, Give Name: MavenWeb_Pipeline, select Build pipeline view in the options shown.\
+Step 24: Scroll down, goto Pipeline Flow->Layout->Based on upstream/downstream relationship-> Select initial job-> MavenWeb_Build, Apply and save.\
+Step 25: Click the trigger to run the pipeline shown on the page for web application automation.\
+Step 26: Now open tomcat homepage in another tab and check the 
+\f0\b manager app
+\f1\b0  option present at the right side.\
+Step 27: Click on /webpath option, and now output of MavenWeb project is seen in the tomcat server in a new tab.\
+\
+\pard\pardeftab720\sl259\slmult1\sa160\partightenfactor0
+
+\f0\b\fs32 \cf2 Creating a Scripted pipeline using Jenkins:\
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+
+\fs24 \cf2 Pipeline Script:\
+\pard\pardeftab720\li1440\sl259\slmult1\sa160\partightenfactor0
+
+\f2\b0 \cf2 pipeline \{\
+    agent any\
+    tools\{\
+        maven 'Maven'\
+        git 'GIT_HOME'\
+    \}\
+    stages \{\
+        stage('git repo & clean') \{\
+            steps \{\
+                //bat "rmdir  /s /q maven_java"\
+                bat "git clone https://github.com/ArunGarimella04/maven_java.git"\
+                bat "mvn clean -f maven_java"\
+            \}\
+        \}\
+        stage('install') \{\
+            steps \{\
+                bat "mvn install -f maven_java" //project name\
+            \}\
+        \}\
+        stage('test') \{\
+            steps \{\
+                bat "mvn test -f maven_java"\
+            \}\
+        \}\
+        stage('package') \{\
+            steps \{\
+                bat "mvn package -f maven_java"\
+            \}\
+        \}\
+    \}\
+\}\
+\pard\pardeftab720\sl259\slmult1\sa160\partightenfactor0
+
+\f0\b\fs28 \cf2 Steps to create a Build Trigger for maven Java project using poll SCM:
+\fs24 \
+
+\f1\b0 1. Create a Jenkins Pipeline.\
+2. Select \'93Build periodically\'94 in Build Triggers section and type \'93H/15 * * * *\'94 in the description.\
+3.  Add your pipeline script in the Pipeline definition section.\
+4.  Click on Build Now option and wait for the build to complete.\
+5. You will see a \'93BUILD SUCCESS\'94 output in the Console Output.\
+
+\f0\b\fs28 Steps to create a Build Trigger for maven Web project using poll SCM:\
+\pard\tx360\tx720\pardeftab720\li720\fi-720\sl259\slmult1\sa160\partightenfactor0
+\ls1\ilvl0
+\f1\b0\fs24 \cf2 {\listtext	1.	}Select an existing maven web build project and go to configure.\
+{\listtext	2.	}Select poll SCM option from \'93BUILD TRIGGERS\'94.\
+{\listtext	3.	}Type \'93H/2 * * * *\'94 in the description.\
+{\listtext	4.	}Click on Build now.\
+\pard\tx360\tx720\pardeftab720\li720\fi-720\sl259\slmult1\sa160\partightenfactor0
+\ls2\ilvl0\cf2 5 . Open tomcat server and click on \'93/Webpath\'94 in \'93manager app\'94 and look for output. \
+6.You have successfully created a maven project with poll SCM.\
+\pard\pardeftab720\li720\sl259\slmult1\sa160\partightenfactor0
+\cf2 \
+\
+\
+\
+}
